@@ -1,0 +1,17 @@
+﻿@model CountValueModel
+
+<div class="text-center">
+
+    <form asp-action="CountValute">
+        @Html.DropDownListFor(model=>model.FirstValuteName,ViewBag.Valutes as SelectList)
+        @Html.DropDownListFor(model=>model.SecondValuteName,ViewBag.Valutes as SelectList)
+        <input type="number" asp-for="FirstValuteCount" />
+        <input type="submit" value="Посчитать" class="btn btn-primary" />
+    </form>
+
+    @if (Model.Result != 0)
+    {
+        <h1>@string.Format("{0:f4}",Model.Result)</h1>
+    }
+
+</div>
