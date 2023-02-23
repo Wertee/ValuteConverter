@@ -16,7 +16,6 @@ namespace ValuteConverter.Services
         public Converter()
         {
             MoneyList = new List<Money>();
-            GetTodayValutes();
         }
 
         private async Task DownloadTodayValutes()
@@ -30,10 +29,9 @@ namespace ValuteConverter.Services
 
         }
 
-        private void GetTodayValutes()
+        public async Task GetTodayValutes()
         {
-            Task downloadTask = DownloadTodayValutes();
-            Task.WaitAll(downloadTask);
+            await DownloadTodayValutes();
         }
 
         public decimal CountValute(string first, decimal countFirst, string second)

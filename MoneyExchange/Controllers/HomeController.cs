@@ -28,8 +28,9 @@ namespace ValuteConverter.Controllers
             _converter = converter;
         }
 
-        public IActionResult Index(CountValueModel model)
+        public async Task<IActionResult> Index(CountValueModel model)
         {
+            await _converter.GetTodayValutes();
             SelectList selectList = new SelectList(_converter.MoneyList.Select(x => x.CharCode).ToList());
             ViewBag.Valutes = selectList;
             return View(model);
