@@ -20,7 +20,7 @@ namespace ValuteConverter.Services
 
         private async Task DownloadTodayValutes()
         {
-            HttpClient httpClient = new HttpClient();
+            using HttpClient httpClient = new HttpClient();
             var response = await httpClient.GetAsync("https://www.cbr-xml-daily.ru/daily_json.js");
             var responceBodyResult = response.Content.ReadAsStringAsync().Result;
             var headerWithValutesAsJson = JsonConvert.DeserializeObject<Header>(responceBodyResult);
